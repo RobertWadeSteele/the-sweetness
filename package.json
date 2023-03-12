@@ -10,7 +10,7 @@
     "build-dev": "webpack --env NODE_ENV=\"development\"",
     "start": "webpack serve",
     "watch": "webpack --watch --mode=development --env NODE_ENV=\"development\"",
-    "serve": "nodemon dist/index.js"
+    "serve": "nodemon dist/serve.js"
   },
   "author": "Robert Steele",
   "license": "ISC",

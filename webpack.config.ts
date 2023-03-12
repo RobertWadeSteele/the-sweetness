@@ -39,7 +39,7 @@ const serverConfig = (env: any, argv: any) => {
         entry: './server/server.entry.tsx',
         mode: env.NODE_ENV,
         output: {
-            filename: 'index.js',
+            filename: 'serve.js',
             path: path.join(__dirname, 'dist')
         },
         target: 'node',
