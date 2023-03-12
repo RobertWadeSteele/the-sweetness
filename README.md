@@ -8,8 +8,9 @@ A project to learn React and SSR with.
 
 1. Clone the repository
 1. Open two terminals in the projects root directory
+    1. Run `npm install`
     1. Run `npm run watch` in the first terminal (builds and watches for changes)
-    1. Run `npm run serve` in the second terminal (serves from the built server and client)
+    1. Run `npm run serve` in the second terminal (serves from the built server)
 
 This setup will watch all files and recompile the client or server depending on which files change.
 
