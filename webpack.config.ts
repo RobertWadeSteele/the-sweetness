@@ -1,41 +1,52 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
-// module.exports
 const clientConfig = (env: any, argv: any) => {
     return {
-        entry: './client/index.tsx',
+        entry: './client/client.entry.tsx',
         mode: env.NODE_ENV,
         output: {
             filename: 'bundle.js',
-            path: path.join(__dirname, 'public')
+            path: path.join(__dirname, 'public'),
+            publicPath: path.join(__dirname, 'public')
         },
         module: {
             rules: [{
-                loader: 'babel-loader',
-                test: /\.js|\.jsx|\.ts|\.tsx$/,
+                test: /\.ts(x?)$/,
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    },
+                    { 
+                        loader: 'ts-loader' 
+                    }
+                ],
+                exclude: /node-modules/
+            },{
+                test: /\.js(x?)$/,
+                use: 'babel-loader',
                 exclude: /node-modules/
             }]
         },
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx']
-        }
+        },
     }
 }
 
 const serverConfig = (env: any, argv: any) => {
     return {
-        entry: './server/index.tsx',
+        entry: './server/server.entry.tsx',
         mode: env.NODE_ENV,
         output: {
-            filename: 'index.js',
+            filename: 'serve.js',
             path: path.join(__dirname, 'dist')
         },
         target: 'node',
         externals: [nodeExternals()],
-        node: {
-            __dirname: false,
-        },
+        // node: {
+        //     __dirname: false,
+        // },
         module: {
             rules: [{
                 test: /\.ts(x?)$/,
@@ -48,11 +59,8 @@ const serverConfig = (env: any, argv: any) => {
                 exclude: /node-modules/
             },{
                 test: /\.js(x?)$/,
-                use: [
-                    {
-                        loader: 'babel-loader'
-                    }
-                ]
+                use: 'babel-loader',
+                exclude: /node-modules/
             }]
         },
         resolve: {

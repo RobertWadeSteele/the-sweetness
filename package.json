@@ -10,7 +10,7 @@
     "build-dev": "webpack --env NODE_ENV=\"development\"",
     "start": "webpack serve",
     "watch": "webpack --watch --mode=development --env NODE_ENV=\"development\"",
-    "serve": "nodemon dist/index.js"
+    "serve": "nodemon dist/serve.js"
   },
   "author": "Robert Steele",
   "license": "ISC",
@@ -20,7 +20,8 @@
     "morgan": "^1.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.8.2"
+    "react-router": "^6.8.2",
+    "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
