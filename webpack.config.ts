@@ -8,7 +8,6 @@ const clientConfig = (env: any, argv: any) => {
         output: {
             filename: 'bundle.js',
             path: path.join(__dirname, 'public'),
-            publicPath: path.join(__dirname, 'public')
         },
         module: {
             rules: [{
