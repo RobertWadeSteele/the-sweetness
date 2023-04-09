@@ -1,5 +1,8 @@
 import React from "react"
+import { Routes, Route } from "react-router"
+
 import HomeView from './views/HomeView'
+import AboutView from './views/AboutView'
 
 const App = () => {
     return(
@@ -10,13 +13,14 @@ const App = () => {
                 <meta name='description' content='React App from Scratch' />
                 <meta name='author' content='Robert Steele' />
                 <title>React App from Scratch</title>
-                <script src="public/bundle.js"></script>
             </head>
             <body>
-                <HomeView></HomeView>
+                <Routes>
+                    <Route path='/' element={<HomeView />} />
+                    <Route path='about' element={<AboutView />} />
+                </Routes>
             </body>
         </html>
-        // <HomeView />
     )   
 }
 

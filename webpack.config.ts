@@ -8,7 +8,6 @@ const clientConfig = (env: any, argv: any) => {
         output: {
             filename: 'bundle.js',
             path: path.join(__dirname, 'public'),
-            publicPath: path.join(__dirname, 'public')
         },
         module: {
             rules: [{
@@ -43,10 +42,7 @@ const serverConfig = (env: any, argv: any) => {
             path: path.join(__dirname, 'dist')
         },
         target: 'node',
-        externals: [nodeExternals()],
-        // node: {
-        //     __dirname: false,
-        // },
+        externals: [ nodeExternals() ],
         module: {
             rules: [{
                 test: /\.ts(x?)$/,
@@ -54,7 +50,9 @@ const serverConfig = (env: any, argv: any) => {
                     {
                         loader: 'babel-loader'
                     },
-                    { loader: 'ts-loader' }
+                    {
+                        loader: 'ts-loader'
+                    }
                 ],
                 exclude: /node-modules/
             },{

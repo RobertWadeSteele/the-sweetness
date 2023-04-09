@@ -5,6 +5,7 @@ import React from 'react'
 import path from 'path'
 
 import { renderToPipeableStream, renderToString } from 'react-dom/server'
+import { StaticRouter } from 'react-router-dom/server'
 
 // import types
 import { Request, Response } from 'express'
@@ -19,28 +20,15 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
 
-// ----------------------------- Setup Dev Environment -------------------------- \\
-// if (process.env.NODE_ENV === "development") {
-//   // source: https://dev.to/cassiolacerda/automatically-refresh-the-browser-on-node-express-server-changes-x1f680-1k0o
-//   const liveReload = require('livereload')
-
-//   const liveReloadServer = liveReload.createServer()
-//   liveReloadServer.watch(path.join(__dirname, 'dist'))
-
-//   const connectLiveReload = require('connect-livereload')
-
-//   app.use(connectLiveReload())
-// }
-
 let publicPath = path.join(__dirname, '..', 'public')
 
 app.use('/public', express.static(publicPath))
 
-app.get('/', (request: Request, response: Response) => {
-  const { pipe } = renderToPipeableStream(<App />, {
+app.get('*', (request: Request, response: Response) => {
+  const { pipe } = renderToPipeableStream(<StaticRouter location={request.url}><App /></StaticRouter>, {
     bootstrapScripts: ['public/bundle.js'],
     onShellReady() {
-      // response.setHeader('content-type', 'text/html')
+      response.setHeader('content-type', 'text/html')
       pipe(response)
     }
   })

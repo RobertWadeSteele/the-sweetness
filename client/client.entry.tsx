@@ -1,8 +1,14 @@
 import { hydrateRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+
 import React from 'react'
+
 import App from './App'
 
-// const domNode = document.getElementById('root') as Element
-// const domNode = document.documentElement
 
-hydrateRoot(document, <App />)
+hydrateRoot(
+    document,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
+)
